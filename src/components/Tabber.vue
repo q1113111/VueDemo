@@ -10,6 +10,9 @@
       <li>
         <router-link to="/center" activeClass="active">center</router-link>
       </li>
+         <li>
+        <router-link to="/combolist" activeClass="active">combolist</router-link>
+      </li>
     </ul>
   </nav>
 </template>

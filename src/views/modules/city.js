@@ -76,7 +76,7 @@ export default {
   actions: {
     async getCityList({ commit }) {
       const list = await axios.get(
-        '/Service/OpenData/ODwsv/ODwsvAttractions.aspx'
+        'https://data.coa.gov.tw/Service/OpenData/ODwsv/ODwsvAttractions.aspx'
       );
       const data = list.data;
       commit('cityMutation', data);
