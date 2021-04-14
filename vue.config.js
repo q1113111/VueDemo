@@ -7,5 +7,5 @@ module.exports = {
       }
     }
   },
-  publicPath: process.env.NODE_ENV === 'production' ? '/VueDemo/' : '/'
+  publicPath: process.env.NODE_ENV === 'production' ? '/VueDEMO2/' : '/'
 };
