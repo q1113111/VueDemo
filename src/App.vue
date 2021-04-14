@@ -1,32 +1,37 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div>
+    <!-- <tabbar v-show="$store.state.navbarshow"></tabbar> -->
+    <tabbar v-show="navbarshow"></tabbar>
+
+    <router-view></router-view>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+// mapState
+import tabbar from './components/Tabber';
+import { mapState } from 'vuex';
 
-#nav {
-  padding: 30px;
+// import bus from '@/bus';
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+export default {
+  // ----不使用事件總線bus----
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  // data() {
+  //   return {
+  //     isShow: true
+  //   };
+  // },
+  components: {
+    tabbar
+  },
+  computed: {
+    ...mapState(['navbarshow'])
   }
-}
-</style>
+  // beforeMount() {
+  //   bus.$on('navbar', (data) => {
+  //     this.isShow = data;
+  //   });
+  // }
+};
+</script>
