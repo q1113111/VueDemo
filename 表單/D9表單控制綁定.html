@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="value" />{{value}}
+      <textarea v-model="value">{{value}}</textarea>
+      <br />
+      <input type="checkbox" v-model="isCheck" />紀錄用戶名
+      <br />
+      你喜愛的運動?
+      <br />
+      <input type="checkbox" v-model="checkgroup" value="游泳" />游泳
+      <input type="checkbox" v-model="checkgroup" value="打球" />打球
+      <input type="checkbox" v-model="checkgroup" value="跑步" />跑步
+      {{checkgroup}}
+      <br />
+      最喜歡的開發語言
+      <input type="radio" value="js" v-model="ispicked" name="" id="" />js
+      <input type="radio" value="php" v-model="ispicked" name="" id="" />php
+      <input type="radio" value="java" v-model="ispicked" name="" id="" />java
+      <br />
+      {{ispicked}}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script>
+      let vm = new Vue({
+        el: "#app",
+        data: {
+          value: "",
+          isCheck: true,
+          checkgroup: [],
+          ispicked: "",
+        },
+      });
+    </script>
+  </body>
+</html>

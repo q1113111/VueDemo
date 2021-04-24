@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .transition-enter-active,
+    .transition-leave-active {
+      transition: .5s;
+    }
+    .transition-enter,
+    .transition-leave {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+    .animation-enter-active {
+      animation: move 0.5s;
+    }
+    .animation-leave-active {
+      animation: move 0.5s reverse;
+    }
+    @keyframes move {
+      0% {
+        opacity: 0;
+        transform: translateX(100px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0px);
+      }
+    }
+  </style>
+  <body>
+    <div id="app">
+      <button @click="isShow=!isShow">clcik</button>
+      <transition name="transition">
+        <div v-show="isShow">789456</div>
+      </transition>
+      <!-- 多個元素過度 -->
+      <transition name="animation" mode="in-out">
+        <!-- 如果使用不同tag就不需要+key -->
+        <p v-if="isShow" key="1">1111</p>
+        <p v-else key="2">2222</p>
+      </transition>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          isShow: true,
+        },
+      });
+    </script>
+  </body>
+</html>

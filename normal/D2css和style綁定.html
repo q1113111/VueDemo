@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .red {
+      background-color: #f00;
+    }
+    .yellow {
+      background-color: #ff0;
+    }
+    .blue {
+      background-color: #00f;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <button @click="clickHandle()">click</button>
+      <div :class="isActive?'red':'yellow'">動態綁定class三元</div>
+      <!-- 缺點沒法直接新增 -->
+      <div :class="classobj">動態綁定class對象寫法</div>
+      <!-- 可以直接新增 -->
+      <div :class="classarr">動態綁定class數組寫法</div>
+
+      <div :style="'background:'+(isActive?'red':'yellow')">
+        動態綁定style三元
+      </div>
+      <div :style="styleobj">動態綁定style對象寫法</div>
+      <div :style="stylearr">動態綁定style數組寫法</div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script>
+      let vm = new Vue({
+        el: "#app",
+        data: {
+          isActive: true,
+          classobj: {
+            a: true,
+            b: true,
+          },
+          classarr: ["a", "b"],
+          styleobj: {
+            backgroundColor: "red",
+          },
+          stylearr: [],
+        },
+        methods: {
+          clickHandle() {
+            this.isActive = !this.isActive;
+          },
+        },
+      });
+      vm.classobj.a = false;
+      vm.classobj.c = true; //在console執行沒有
+      vm.classarr.pop();
+      vm.classarr.push("c");
+
+      vm.styleobj.fontSize = "30px"; //在console執行沒有
+      //   vm.styleobj = { fontSize: "30px", backgroundColor: "yellow" };
+      vm.stylearr.push({ backgroundColor: "blue" });
+      vm.stylearr.push({ fontSize: "50px" });
+      vm.stylearr.shift();
+    </script>
+  </body>
+</html>

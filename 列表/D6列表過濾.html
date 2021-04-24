@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" @input="inputHanlder()" v-model="datatxt" />
+      <ul>
+        <li v-for="data of datalist">{{data}}</li>
+      </ul>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script>
+      let vm = new Vue({
+        el: "#app",
+        data: {
+          datalist: ["aaa", "bbb", "ccc", "ddd", "add", "cee", "eee"],
+          copylist: ["aaa", "bbb", "ccc", "ddd", "add", "cee", "eee"],
+          datatxt: "",
+        },
+        methods: {
+          inputHanlder() {
+            let newdatalist = this.copylist.filter((item) => {
+              return item.indexOf(this.datatxt) > -1;
+            });
+            this.datalist = newdatalist;
+            console.log(this.datalist, newdatalist);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

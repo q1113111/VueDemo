@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <div v-hello="'red'">0001</div>
+      <div v-hello="'yellow'">0002</div>
+      <div v-hello="color">0003</div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script>
+      Vue.directive("hello", {
+        inserted(el, bind) {
+          //指令生命週期-創建
+          el.style.background = bind.value;
+        },
+        //若要更新使用updated
+        update(el, bind) {
+          el.style.background = bind.value;
+        },
+      });
+      let vm = new Vue({
+        el: "#app",
+        data: {
+          color: "#f0f",
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="clickHandle">click</button>
+      <div v-if="isCreated">動態新增和刪除if</div>
+      <div v-else>動態新增和刪除else</div>
+
+      <!-- 購物車 -->
+      <!-- 不依靠iscreated可以改用datalist.length -->
+      <ul v-if="datalist.length ">
+        <li v-for="data in datalist">{{data}}</li>
+      </ul>
+      <div v-else>購物車沒東西</div>
+
+      <div v-if="waich===1">if1</div>
+      <div v-else-if="waich===2">else if 2</div>
+      <div v-else>else 3</div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script>
+      let vm = new Vue({
+        el: "#app",
+        data: {
+          datalist: [],
+          isCreated: true,
+          waich: 1,
+        },
+        methods: {
+          clickHandle() {
+            this.isCreated = !this.isCreated;
+            this.datalist = ["1111", "2222", "3333"];
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

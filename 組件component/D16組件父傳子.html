@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <navbar myname="home" :myshow="false"></navbar>
+      <navbar myname="list" :myshow="true"></navbar>
+      <navbar :myname="parentName" :myshow="true"></navbar>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script>
+      Vue.component("navbar", {
+        template: `
+                <div>
+                    <button>返回</button>
+                    navbar -- {{myname}}
+                    <button v-show="myshow">首頁</button>
+                </div>
+            `,
+        // props: ["myname", "myshow"],
+
+        // 屬性驗證!!
+        props: {
+          myname: String,
+          myshow: Boolean,
+          required: true,
+        },
+      });
+
+      new Vue({
+        el: "#app",
+        data: {
+          parentName: "父組件名稱",
+        },
+      });
+    </script>
+  </body>
+</html>

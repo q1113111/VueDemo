@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <author></author>
+      <client></client>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script>
+      let bus = new Vue();
+
+      Vue.component("author", {
+        template: `
+                <div style="background:#f00">
+                    我是一個author
+                    <input type="text" ref="mytxt">
+                    <button @click="clickHandle()">送出</button>
+                </div>
+            `,
+        data() {
+          return {
+            authorname: "作者名稱",
+          };
+        },
+        methods: {
+          clickHandle() {
+            bus.$emit("message", this.$refs.mytxt.value, this.authorname);
+          },
+        },
+      });
+      Vue.component("client", {
+        //合適的位置設置$on
+        template: `
+                <div style="background:#f0f">
+                    我是一個用戶
+                </div>
+            `,
+        mounted() {
+          bus.$on("message", (...data) => {
+            console.log("我是事件總線資料", data);
+          });
+          console.log("生命週期函數-當前物件DOM 創建完成之後就會執行");
+        },
+      });
+      new Vue({
+        el: "#app",
+      });
+    </script>
+  </body>
+</html>

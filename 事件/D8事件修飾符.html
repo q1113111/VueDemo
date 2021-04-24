@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul @click.self="clickUlHanlder()">
+        <li @click.stop="clickLiHandler($event)">11</li>
+        <li @click="clickLiHandler()">22</li>
+        <li @click.once="clickLiHandler()">33</li>
+      </ul>
+      <a href="https://www.google.com" @click.prevent="clickLinkHanlder($event)"
+        >link</a
+      >
+
+      <input type="text" @keyup.65="keyupHandler" />
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script>
+      let vm = new Vue({
+        el: "#app",
+        methods: {
+          clickLiHandler(e) {
+            // e.stopPropagation();
+            console.log("li click", e);
+          },
+          clickUlHanlder() {
+            console.log("ul click");
+          },
+          clickLinkHanlder(e) {
+            // e.preventDefault();
+          },
+          keyupHandler(e) {
+            // if (e.keyCode === 13) {
+            //   console.log("enter");
+            // }
+            console.log("enter", e);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

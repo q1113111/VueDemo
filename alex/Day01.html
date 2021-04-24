@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <div id="section1">
+        <span>data1</span><span>data2</span><span>data3</span><span>data4</span
+        ><span>data5</span><span>data6</span><span>data7</span><span>data8</span
+        ><span>data9</span><span>data10</span>
+      </div>
+      <!-- v-cloak 防止vue未啟動時產生key -->
+      <div id="section5" v-cloak>
+        <p>{{copyright}}</p>
+        <p>{{company}}　版權所有{{year}}　建議瀏覽器chrome / edge</p>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script>
+      (function () {
+        new Vue({
+          el: "#section5",
+          data: {
+            copyright: "版權所有 轉仔畢就",
+            company: "一零四資訊科技股份有限公司",
+            year: "© " + new Date().getFullYear(),
+          },
+        });
+      })();
+    </script>
+  </body>
+</html>

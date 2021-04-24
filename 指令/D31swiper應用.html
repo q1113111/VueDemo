@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+  </head>
+  <style>
+    .swiper-container {
+      width: 600px;
+      height: 500px;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <div class="swiper-container a">
+        <div class="swiper-wrapper">
+          <div
+            class="swiper-slide"
+            v-for="(data,index) of list"
+            v-swiper="{
+               index:index,
+               length:list.length 
+            }"
+          >
+            {{data}}
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script>
+      Vue.directive("swiper", {
+        inserted(el, bind) {
+          if (bind.value.index === bind.value.length - 1) {
+            new Swiper(".a", {
+              loop: true,
+              pagination: {
+                el: ".swiper-pagination",
+              },
+            });
+          }
+        },
+      });
+
+      new Vue({
+        el: "#app",
+        data: {
+          list: [],
+        },
+        mounted() {
+          setTimeout(() => {
+            this.list = ["1111", "2222", "3333"];
+          }, 2000);
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+  </head>
+  <style>
+    .swiper-container {
+      width: 600px;
+      height: 500px;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <swiper :key="datalist.length">
+        <div class="swiper-slide" v-for="data of datalist">
+          {{data}}
+          <img src="./S__4031050.jpg" alt="" />
+        </div>
+      </swiper>
+    </div>
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+
+    <script>
+      Vue.component("swiper", {
+        template: `
+                <div class="swiper-container a">
+                    <div class="swiper-wrapper">
+                    <slot></slot>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            `,
+        mounted() {
+          new Swiper(".a", {
+            loop: true,
+            pagination: {
+              el: ".swiper-pagination",
+            },
+          });
+        },
+      });
+
+      new Vue({
+        el: "#app",
+        data: {
+          datalist: [],
+        },
+        mounted() {
+          setTimeout(() => {
+            this.datalist = ["1111", "2222", "3333", "4444", "5555"];
+          }, 2000);
+        },
+      });
+    </script>
+  </body>
+</html>

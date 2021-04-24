@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .animation-enter-active {
+      animation: move 1s;
+    }
+    .animation-leave-active {
+      animation: move 1s reverse;
+    }
+    @keyframes move {
+      0% {
+        opacity: 0;
+        transform: translateX(100px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0px);
+      }
+    }
+  </style>
+  <body>
+    <div id="app">
+      <input type="text" v-model="mytxt" />
+      <button @click="addHandle()">新增</button>
+
+      <transition-group name="animation" tag="ul" model="out-in">
+        <li v-for="(data,index) of datalist" :key="data">
+          {{data}}--{{index}}
+          <button @click="deletHandle(index)">del</button>
+        </li>
+      </transition-group>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          datalist: [],
+          mytxt: "",
+        },
+        methods: {
+          addHandle() {
+            return this.datalist.push(this.mytxt);
+          },
+          deletHandle(index) {
+            return this.datalist.splice(index, 1);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

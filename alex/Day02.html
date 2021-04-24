@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p v-once>{{msg}}</p>
+      <p>{{msg}}</p>
+      <p>{{html}}123</p>
+      <p v-html="test">1512123</p>
+      <p v-text="html">1512123</p>
+      <p v-html="html">1512123</p>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script type="text/x-template" id="template-page">
+      <span style="color:red">This {{msg}} be red.</span>
+    </script>
+    <script>
+      let data = {
+        msg: "hello Vue",
+        html: '<span style="color:red">This should be red.</span>',
+        test: '<img src="aaa.jpg" onerror="window.alert(`err..`)">',
+      };
+
+      //凍結不會透過Vue執行畫面更新
+      // Object.freeze(data);
+
+      //資料規劃
+      let example = {
+        img: "src",
+        img: {
+          src: "str",
+          alt: "str",
+        },
+        title: "str/html",
+        description: "str/html",
+        price: "number",
+        price: {
+          type: "str",
+          money: "number",
+        },
+        count: "number",
+      };
+      //data and methods
+      //第一層盡量不要用箭頭涵式
+      let vm = new Vue({
+        // el: "#app",
+        // template: `<span style="color:red">This {{msg}} be red.</span>`,
+        template: "#template-page",
+        data,
+        created() {
+          console.log(this);
+        },
+      });
+      vm.$mount("#app");
+      //$介紹
+      vm.$data === data; //true 錢字號是相等的
+      vm.$el === document.querySelector("#app");
+
+      // data.msg == vm.msg; //兩個相等
+      // vm.msg = 50; //更改資料就會更新畫面
+      vm.b = "hi"; //這樣資料沒法直接連動畫面
+
+      //Instance Lifecyle Hooks
+      // let vm = new Vue({
+      //   el: "#app",
+      //   data,
+      //   created() {
+      //     console.log(this);
+      //   },
+      // });
+
+      //directive
+      // v - once; //不需要改變畫面
+    </script>
+  </body>
+</html>

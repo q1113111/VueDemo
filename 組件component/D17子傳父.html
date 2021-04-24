@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      父組件
+      <child @myevent="eventHandle($event)"></child>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script>
+      Vue.component("child", {
+        template: `
+                <div>
+                子組件
+                <button @click="childHandle()">click</button>
+                </div>
+            `,
+        data() {
+          return {
+            childname: "子組件資料",
+          };
+        },
+        methods: {
+          childHandle() {
+            this.$emit("myevent", this.childname);
+          },
+        },
+      });
+
+      new Vue({
+        el: "#app",
+        methods: {
+          eventHandle(ev) {
+            console.log("給父層資料", ev);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

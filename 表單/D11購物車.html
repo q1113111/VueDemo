@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="checkbox" @change="checkAll()" v-model="isActive" />
+      <ul>
+        <li v-for="data of datalist">
+          <input
+            type="checkbox"
+            v-model="checkgroup"
+            @change="checkHanlder()"
+            :value="data"
+          />
+          {{data}}
+          <button @click="delHanlder(data)">del</button>
+          {{data.number}}
+          <button @click="data.number++">add</button>
+        </li>
+      </ul>
+      {{checkgroup}}
+      <br />
+      總金額計算：{{getSum()}}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script>
+      let vm = new Vue({
+        el: "#app",
+        data: {
+          checkgroup: [],
+          isActive: false,
+          datalist: [
+            {
+              id: 1,
+              name: "商品1",
+              price: 10,
+              number: 1,
+            },
+            {
+              id: 2,
+              name: "商品2",
+              price: 20,
+              number: 2,
+            },
+            {
+              id: 3,
+              name: "商品3",
+              price: 30,
+              number: 3,
+            },
+          ],
+        },
+        methods: {
+          getSum() {
+            let sum = 0;
+            for (let i in this.checkgroup) {
+              sum += this.checkgroup[i].price * this.checkgroup[i].number;
+            }
+            return sum;
+          },
+          checkAll() {
+            if (this.isActive) {
+              this.checkgroup = this.datalist;
+            } else {
+              this.checkgroup = [];
+            }
+          },
+          checkHanlder() {
+            if (this.checkgroup.length === this.datalist.length) {
+              this.isActive = true;
+            } else {
+              this.isActive = false;
+            }
+          },
+          delHanlder(data) {
+            let number = data.number--;
+            if (number === 1) {
+              data.number = 1;
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

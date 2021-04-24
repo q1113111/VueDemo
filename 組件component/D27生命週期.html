@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <child v-if="isCreated"></child>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script>
+      Vue.component("child", {
+        template: `
+            <div  id="aa">
+                child--{{title}}
+                {{count}}
+                <button @click="title='1111'">click</button>
+                <button @click="title='2222'">click</button>
+            </div>
+        `,
+        data() {
+          return {
+            title: "000",
+            datalist: [],
+            count: 0,
+          };
+        },
+        methods: {},
+        beforeCreate() {
+          console.log("beforeCreate");
+        },
+        created() {
+          console.log("created");
+        },
+        beforeMount() {
+          console.log("beforemounted");
+        },
+        mounted() {
+          console.log(
+            "mounted",
+            "訪問DOM,setInterval,window.onscroll,監聽事件 ajax"
+          );
+        },
+        beforeUpdate() {
+          console.log("beforeUpdate");
+        },
+        updated() {
+          console.log("updated", "更新之後可以訪問DOM");
+        },
+        beforeDestroy() {
+          console.log(
+            "beforeDestroy",
+            "clearInterval,window.onscorll=null,$off"
+          );
+        },
+        destroyed() {
+          console.log("destroyed", "clearInterval,window.onscroll=null, $off");
+        },
+      });
+      let vm = new Vue({
+        el: "#app",
+        data: {
+          isCreated: true,
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 具名slot -->
+      <child>
+        <p slot="a">childA</p>
+        <p slot="b">childB</p>
+      </child>
+
+      <siwper>
+        <li v-for="data of datalist">{{data}}</li>
+      </siwper>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script>
+      Vue.component("child", {
+        template: `
+            <div>
+                <slot name="a"></slot>
+                child
+                <slot name="b"></slot>
+            </div>
+        `,
+      });
+      Vue.component("swiper", {
+        template: `
+            <ul>
+            <slot></slot>
+            </ul>
+          `,
+      });
+      new Vue({
+        el: "#app",
+        data: {
+          datalist: ["1111", "2222", "3333"],
+        },
+      });
+    </script>
+  </body>
+</html>

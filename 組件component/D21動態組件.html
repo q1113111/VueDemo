@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li @click="who='home'">home</li>
+        <li @click="who='list'">list</li>
+        <li @click="who='shopcar'">shopcar</li>
+      </ul>
+      <keep-alive>
+        <component :is="who"></component>
+      </keep-alive>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          who: "home",
+        },
+        components: {
+          home: {
+            template: `<div>home <input type="text"></div>`,
+          },
+          list: {
+            template: `<div>list</div>`,
+          },
+          shopcar: {
+            template: `<div>shopcar</div>`,
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
