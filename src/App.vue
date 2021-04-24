@@ -4,16 +4,30 @@
       <router-link to="/all">全部</router-link> |
       <router-link to="/active">未完成</router-link>|
       <router-link to="/complete">已完成</router-link>
-      <div>test</div>
+    </div>
+    <Insert />
+    <div id="list">
+      <List v-for="index in todosIndex" :key="index" :index="index" />
     </div>
   </div>
 </template>
+
 <script>
+import Insert from '@/components/Insert';
+import List from '@/components/List';
+import { mapGetters } from 'vuex';
 export default {
-  methods: {
-    test() {
-      console.log(this.$route);
-    }
+  components: {
+    Insert,
+    List
+  },
+  computed: {
+    ...mapGetters('Todo', {
+      todosIndex: 'todosIndex'
+    })
+  },
+  mounted() {
+    this.$store.dispatch('Todo/initTodo');
   }
 };
 </script>
@@ -26,7 +40,9 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
+#list {
+  margin-top: 50px;
+}
 #nav {
   padding: 30px;
 

@@ -15,6 +15,10 @@ const routes = [
   {
     path: '/complete',
     name: 'complete'
+  },
+  {
+    path: '*',
+    redirect: '/all'
   }
 ];
 
