@@ -8,8 +8,12 @@ const STORE = LocalStorage('todo-vue')
 
 export default new Vuex.Store({
   state: {
-    // todos: [{ content: 123, done: false }, { content: 456, done: true }, { content: 789, done: false }]
-    todos: []
+    todos: [
+      { content: 123, done: false },
+      { content: 456, done: true },
+      { content: 789, done: false }
+    ]
+    // todos: []
   },
   getters: {
     list (state) {
@@ -21,7 +25,7 @@ export default new Vuex.Store({
       })
     },
     filterList (state, getters) {
-      return (filter) => {
+      return filter => {
         let status = null
         switch (filter) {
           case 'all':
@@ -33,7 +37,9 @@ export default new Vuex.Store({
             status = true
             break
         }
-        return getters.list.filter((todo) => { return todo.todo.done === status })
+        return getters.list.filter(todo => {
+          return todo.todo.done === status
+        })
       }
     }
     // filterList1 (state) {
@@ -92,7 +98,7 @@ export default new Vuex.Store({
       }
     },
     CHECK_TODO ({ commit }, { tId, done }) {
-    // UPDATE_TODO ({ commit }, { tId, content }) {
+      // UPDATE_TODO ({ commit }, { tId, content }) {
       // 1. PATCH axios.patch()
       const todos = STORE.load()
       todos[tId].done = done

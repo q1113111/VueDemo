@@ -39,6 +39,7 @@ export default {
   },
   mounted () {
     this.$store.dispatch('READ_TODOS')
+    console.log(this.$router)
   },
   computed: {
     list () {
@@ -53,6 +54,7 @@ export default {
     $route: {
       immediate: true,
       handler: function (route) {
+        console.log(this, route)
         this.edit = null
         // check query => redirect
         this.filter = route.query.filter || 'all'
@@ -75,7 +77,6 @@ export default {
 </script>
 
 <style scoped>
-
 .todo a{
   color: black;
   text-decoration: none;
@@ -84,5 +85,4 @@ export default {
   color: green;
   font-weight: bold;
 }
-
 </style>
