@@ -101,7 +101,9 @@ export default {
     Footer,
     CopyRight,
     Arrow
-
+  },
+  mounted () {
+    console.log(this.$route.name)
   }
 }
 </script>

@@ -35,10 +35,10 @@ export default {
       margin-top: $spacer * 0.5;
    }
    &.is-active &__span:nth-child(1) {
-opacity: 0;
+      opacity: 0;
    }
    &.is-active &__span:nth-child(2) {
-           transform: rotate(-45deg) translate(-3px, 0px);
+      transform: rotate(-45deg) translate(-3px, 0px);
    }
    &.is-active &__span:nth-child(3) {
       transform: rotate(45deg) translate(-6px, -7px);

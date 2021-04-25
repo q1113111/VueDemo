@@ -77,7 +77,9 @@ export default {
           title: '購物專區',
           icon: 'fas fa-cart-arrow-down',
           toggle: false,
-          router: '/'
+          router: {
+            name: 'Shop'
+          }
         },
         {
           title: '會員登入',
